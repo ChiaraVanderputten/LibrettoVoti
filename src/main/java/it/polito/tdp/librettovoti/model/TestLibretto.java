@@ -1,6 +1,7 @@
 package it.polito.tdp.librettovoti.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class TestLibretto {
 	
@@ -17,9 +18,17 @@ public class TestLibretto {
 
 	libretto.add(new Voto("Fisca 1", 28, LocalDate.of(2019, 6, 17)));
 	libretto.add(new Voto("Informatica", 20, LocalDate.of(2019, 9, 12)));
+	libretto.add(new Voto("Chimica", 25, LocalDate.of(2019, 6, 20)));
 	
 	//mi serve un metodo per stmapre
 	System.out.println(libretto); //così mi stampa l'indirizzo di memoria del libretto, deve dirglielo il libretto come stamparsi
 	                              //tamite un toString in libretto
+	
+	List <Voto> venticinque = libretto.listaVotiUguali(25);
+	System.out.println(venticinque); // mi mette le parentesi perchè stampo l'oggetto lista
+	
+	Libretto librettoventicinque = libretto.votiUguali(25);
+	System.out.println(librettoventicinque); // mi stampa ma senza più le parentesi e virgole perchè usa un metodo più intelligente di prima
+	
 	}
 }
