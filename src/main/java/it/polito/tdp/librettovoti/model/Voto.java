@@ -15,6 +15,8 @@ import java.time.LocalDate;
 
 public class Voto {
 	
+	//ANCHE VOTO FA PARTE DI MODEL
+	
 	private String nome;
 	private int voto; //30L come lo rappresento?
 	private LocalDate data; //usato per le date //data superamento esame
@@ -65,7 +67,7 @@ public class Voto {
 
 	public String toString() {
 		
-		return "Esame" + nome +" superato con " + voto+ " il "+data;
+		return "Esame " + nome +" superato con " + voto+ " il "+data;
 		
 	}
 	

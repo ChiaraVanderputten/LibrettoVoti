@@ -5,10 +5,13 @@ import java.util.List;
 
 public class Libretto {
 	
+	//corrisponde al Model del MVC
+	
 	private List<Voto> voti; //bisogna importare util nno altri java list
 	                         //variabile che non punta a nulla (null)
 	public Libretto() {
 		this.voti = new ArrayList <>(); //inizializzo la lista 
+		System.out.println("Sono libretto e sono vivo e sono collegato al controller");
 	}
 	
 	public void add(Voto v) {
