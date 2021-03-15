@@ -25,10 +25,20 @@ public class TestLibretto {
 	                              //tamite un toString in libretto
 	
 	List <Voto> venticinque = libretto.listaVotiUguali(25);
-	System.out.println(venticinque); // mi mette le parentesi perchè stampo l'oggetto lista
+	//System.out.println(venticinque); // mi mette le parentesi perchè stampo l'oggetto lista
 	
 	Libretto librettoventicinque = libretto.votiUguali(25);
 	System.out.println(librettoventicinque); // mi stampa ma senza più le parentesi e virgole perchè usa un metodo più intelligente di prima
+	
+	Voto analisi =libretto.ricercaVoto("Analisi 1");
+	System.out.println(analisi);
+	Voto analisi2 =libretto.ricercaVoto("Analisi 3");
+	System.out.println(analisi2);
+	
+	Voto chimica = libretto.ricercaVoto("Chimica");
+	Voto chimicaDoppio = new Voto("Chimica", 25, LocalDate.of(2019, 6, 20));
+	Voto chimicaConflitto = new Voto("Chimica", 29, LocalDate.of(2019, 6, 20));
+	System.out.println(chimica + " doppione di "+ chimicaDoppio+" ? ");
 	
 	}
 }

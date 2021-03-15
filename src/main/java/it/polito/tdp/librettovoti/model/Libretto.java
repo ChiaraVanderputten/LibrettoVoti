@@ -1,7 +1,9 @@
 package it.polito.tdp.librettovoti.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Libretto {
 	
@@ -9,13 +11,19 @@ public class Libretto {
 	
 	private List<Voto> voti; //bisogna importare util nno altri java list
 	                         //variabile che non punta a nulla (null)
+	
+	private Map<String,Voto> votiMap; //identity map cioè conserva identità degli oggetti
+	                                  //nome esame -> oggetto Voto
+	
 	public Libretto() {
 		this.voti = new ArrayList <>(); //inizializzo la lista 
-		System.out.println("Sono libretto e sono vivo e sono collegato al controller");
+		//System.out.println("Sono libretto e sono vivo e sono collegato al controller");
+	    this.votiMap= new HashMap<>();
 	}
 	
 	public void add(Voto v) {
 		voti.add(v);
+		votiMap.put(v.getNome(), v);
 		
 	}
 	
@@ -52,8 +60,9 @@ public class Libretto {
 	
 	}
 	
-	
-	
+	public Voto ricercaVoto(String nomeCorso) { //ricerca un Voto del corso di cui è specificato il nome del corso se nome non esiste torna null
+		return this.votiMap.get(nomeCorso);
+	}
 	
 	 
 	   public Libretto votiUguali (int punteggio) {
@@ -71,6 +80,48 @@ public class Libretto {
 		return risultato;  //il risultato qua è un libretto
 	}  
 	
+	   public boolean esisteDuplicato (Voto v) { //verifica se c'è gia un esame con lo stesso nome
+		   
+		/*   boolean t=false;
+		   for(Voto voto: this.voti)
+			   if(voto.getNome().equals(v.getNome()) && voto.getVoto()==v.getVoto()) {
+				   t=true;
+				   break;
+			   }
+				
+		   return t;
+		   */
+		   Voto trovato = this.votiMap.get(v.getNome());  //più efficente la ricerca in una mappa
+		   if(trovato==null)
+			   return false;
+		   if(trovato.getVoto()==v.getVoto())
+			   return true;
+		   else
+			   return false;
+	   }
+	   
+	   public boolean esisteConflitto(Voto v) { //verifica che non esiste già un esame con lo stesso voto e stesso nome
+		  
+		/*   boolean t=false;
+		   for(Voto voto: this.voti)
+			   if(voto.getNome().equals(v.getNome()) && voto.getVoto()!=v.getVoto()) {
+				   t=true;
+				   break;
+			   }
+				
+		   return t;
+		   */
+		   Voto trovato = this.votiMap.get(v.getNome());  //più efficente la ricerca in una mappa
+		   if(trovato==null)
+			   return false;
+		   if(trovato.getVoto()!=v.getVoto())
+			   return true;
+		   else
+			   return false;
+		   
+	   }
+	   
+	   
 	public String toString() {
 		
 		//return voti.toString(); //così però la lista ritorna gli indirizzi degli oggetti voti e non le stringhe dei voti veri e propri
