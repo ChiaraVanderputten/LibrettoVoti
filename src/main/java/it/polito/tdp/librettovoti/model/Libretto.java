@@ -1,6 +1,8 @@
 package it.polito.tdp.librettovoti.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -139,16 +141,54 @@ public class Libretto {
 		   
 	   }
 	   
+	   public class ComparatoreAlfabetico implements Comparator<Voto>{
+
+		@Override
+		public int compare(Voto o1, Voto o2) {
+			
+			return o1.getNome().compareTo(o2.getNome());
+		}
+		   
+	   }
 	   
+	   public class ComparatoreNumerico implements Comparator<Voto>{
+
+			@Override
+			public int compare(Voto o1, Voto o2) {
+				
+				return - (o1.getVoto() - o2.getVoto());
+			}
+			   
+		   }
+	   
+	 public void removeMin24() {
+		
+		List <Voto> daRimuovere = new ArrayList <>();
+		List <String> daRim = new ArrayList<>();
+		
+		for(Voto v : voti)
+			if(v.getVoto()<24) {
+				daRimuovere.add(v);
+				daRim.add(v.getNome());
+			}
+		
+		voti.removeAll(daRimuovere);
+		
+	}  
 	public String toString() {
 		
 		//return voti.toString(); //così però la lista ritorna gli indirizzi degli oggetti voti e non le stringhe dei voti veri e propri
 		String s ="";
+		
+		Collections.sort(voti, new ComparatoreAlfabetico());  //punto 8
+		Collections.sort(voti, new ComparatoreNumerico());
 		
 		for(Voto v : this.voti)
 			s+=v.toString()+"\n";
 		
 		return s;
 	}
+	
+	
 
 }

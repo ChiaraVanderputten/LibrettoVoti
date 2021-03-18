@@ -19,6 +19,8 @@ public class EntryPoint extends Application {
         FXMLController controller = loader.getController();
         
         Libretto model = new Libretto(); //creato il modello e informato qual'è il modello su cui vogliamo lavorare
+        //modello deve essere noto al controller-> andremo ad aggiungerla nel controller
+        
         controller.setModel(model); //mi da errore su controller-> devo modificare creando una classe
         
         Scene scene = new Scene(root);

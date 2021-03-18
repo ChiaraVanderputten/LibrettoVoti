@@ -56,7 +56,8 @@ public class TestLibretto {
 	else
 		System.out.println("L' "+chimicaConflitto+" +non è in conflitto con un esame nel libretto \n");
 	
-	
+	libretto.removeMin24();
+	System.out.println(libretto); 
 	
 	}
 }

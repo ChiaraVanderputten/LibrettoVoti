@@ -13,8 +13,8 @@ import javafx.scene.control.TextField;
 
 public class FXMLController {
 
-	private Libretto model;
-	
+	private Libretto model; //controller conosce la classe del modello e ne ha un riferimento
+	                       //devo poi iniziarla correttamente tramite il metodo setModel che inserisco in fondo a tutto
     @FXML
     private ResourceBundle resources;
 
@@ -88,8 +88,17 @@ public class FXMLController {
 
     }
     
+    //questo setModel dovremmo chiamarlo ora dall'EntryPoint
     public void setModel(Libretto model) {  //messo all'inizio
     	this.model=model;
+    }  //non lo facciamo in initialize perchè viene chiamato automaticamente dalla scena e dentro non è accessibile
+    
+    @FXML
+    void doRemove(ActionEvent event) {
+    	
+    	result.setText("");
+    	model.removeMin24();
+    	result.setText(model.toString());
     }
 
     @FXML
@@ -99,4 +108,6 @@ public class FXMLController {
         assert result != null : "fx:id=\"result\" was not injected: check your FXML file 'Scene.fxml'.";
         assert datePickEsame != null : "fx:id=\"datePickEsame\" was not injected: check your FXML file 'Scene.fxml'.";
     }
+    
+    
 }
