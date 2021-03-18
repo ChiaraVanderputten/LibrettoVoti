@@ -67,6 +67,13 @@ public class FXMLController {
     		return;
     	}
     	
+    	Voto temp = model.getVotiMap().get(nomeEsame);
+    	if(temp!=null) {
+    		result.setText("ERRORE: stai cercando di inserire un voto già esistente o in conflitto con voti già essitenti");
+    		return;
+    	}
+    		
+    	
     	
     	//2) Esegui l'azione
     	Voto voto = new Voto(nomeEsame, votoInt, data);

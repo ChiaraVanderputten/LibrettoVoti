@@ -22,10 +22,18 @@ public class Libretto {
 	}
 	
 	public void add(Voto v) {
+		
+		Voto temp = votiMap.get(v.getNome());
+		
+		if(temp==null) {               //punto 6
 		voti.add(v);
 		votiMap.put(v.getNome(), v);
+		}else {
+			System.out.println("Stai provando ad aggiungere un voto che entra in conflitto con un altro voto o che già esiste");
+		}
 		
 	}
+	
 	
 	
 	/* public void stampaVotiUguali (int punteggio) {
@@ -44,6 +52,12 @@ public class Libretto {
 	
 	}
 	*/
+	
+	public Map<String, Voto> getVotiMap() {
+		return votiMap;
+	}
+
+	//punto 2
 	public List<Voto> listaVotiUguali (int punteggio){
 		//restituisce i voti uguali al criterio
 		//risolve un altro problema
@@ -60,6 +74,7 @@ public class Libretto {
 	
 	}
 	
+	//punto 3
 	public Voto ricercaVoto(String nomeCorso) { //ricerca un Voto del corso di cui è specificato il nome del corso se nome non esiste torna null
 		return this.votiMap.get(nomeCorso);
 	}
@@ -80,6 +95,8 @@ public class Libretto {
 		return risultato;  //il risultato qua è un libretto
 	}  
 	
+	   
+	   //punto 4
 	   public boolean esisteDuplicato (Voto v) { //verifica se c'è gia un esame con lo stesso nome
 		   
 		/*   boolean t=false;
@@ -100,6 +117,7 @@ public class Libretto {
 			   return false;
 	   }
 	   
+	   //punto 5
 	   public boolean esisteConflitto(Voto v) { //verifica che non esiste già un esame con lo stesso voto e stesso nome
 		  
 		/*   boolean t=false;
